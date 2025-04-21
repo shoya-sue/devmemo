@@ -1,0 +1,11 @@
+{
+  "name": "devmemo",
+  "version": "0.1.0",
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "@tailwindcss/typography": "^0.5.16",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "terminal": {
+        "shell": "C:\\WINDOWS\\System32\\wsl.exe",
+        "shellArgs": ["-d", "AlmaLinux9", "--cd", "/var/www/vhosts/devmemo"],
+        "cwd": "${workspaceFolder}"
+    },
+    "wsl": {
+        "defaultDistribution": "AlmaLinux9",
+        "automaticActivation": true
+    },
+    "terminal.integrated.defaultProfile.windows": "WSL",
+    "terminal.integrated.profiles.windows": {
+        "WSL": {
+            "path": "C:\\WINDOWS\\System32\\wsl.exe",
+            "args": ["-d", "AlmaLinux9"]
+        }
+    }
+} 
