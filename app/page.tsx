@@ -83,7 +83,7 @@ export default function Home() {
           ) : (
             <div className="text-center">
               <Link
-                href="/login"
+                href="/auth/login"
                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 ログインして始める
