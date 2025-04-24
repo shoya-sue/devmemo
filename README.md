@@ -81,6 +81,33 @@ create table posts (
 );
 ```
 
+### Categories Table
+```sql
+create table categories (
+  id uuid primary key default uuid_generate_v4(),
+  name text not null,
+  created_at timestamp with time zone default timezone('utc'::text, now())
+);
+```
+
+### Tags Table
+```sql
+create table tags (
+  id uuid primary key default uuid_generate_v4(),
+  name text not null,
+  created_at timestamp with time zone default timezone('utc'::text, now())
+);
+```
+
+### Post Tags Table
+```sql
+create table post_tags (
+  post_id uuid references posts(id) on delete cascade,
+  tag_id uuid references tags(id) on delete cascade,
+  primary key (post_id, tag_id)
+);
+```
+
 ## 🔧 デプロイ / Deployment
 
 ### Supabase Setup
