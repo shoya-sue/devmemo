@@ -8,6 +8,8 @@ import { Post, Category, Tag } from '@/types/post';
 import { createPost, updatePost } from '@/lib/api/posts';
 import { getCategories } from '@/lib/api/categories';
 import { getTags } from '@/lib/api/tags';
+import { Media } from '@/lib/api/media';
+import MediaModal from '@/app/components/media/MediaModal';
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
@@ -34,6 +36,7 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
     post?.tags?.map(tag => tag.id) || []
   );
   const [previewMode, setPreviewMode] = useState<'edit' | 'preview'>('edit');
+  const [showMediaModal, setShowMediaModal] = useState(false);
 
   useEffect(() => {
     loadCategories();
@@ -96,6 +99,11 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
         ? prev.filter(id => id !== tagId)
         : [...prev, tagId]
     );
+  };
+
+  const insertMedia = (media: Media) => {
+    const markdownImage = `![${media.file_name}](${media.file_path})`;
+    setContent(prev => prev + '\n\n' + markdownImage);
   };
 
   return (
@@ -179,6 +187,12 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
             >
               プレビュー / Preview
             </button>
+            <button
+              onClick={() => setShowMediaModal(true)}
+              className="px-3 py-1 rounded-md text-sm bg-green-600 text-white hover:bg-green-700"
+            >
+              📷 画像 / Image
+            </button>
           </div>
         </div>
 
@@ -248,6 +262,13 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
           {error}
         </div>
       )}
+
+      <MediaModal
+        isOpen={showMediaModal}
+        onClose={() => setShowMediaModal(false)}
+        onSelect={insertMedia}
+        title="画像を挿入"
+      />
     </div>
   );
 } 

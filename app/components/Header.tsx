@@ -38,6 +38,12 @@ export default function Header() {
                 >
                   記事一覧 / Posts
                 </Link>
+                <Link
+                  href="/media"
+                  className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
+                >
+                  メディア / Media
+                </Link>
                 <button
                   onClick={signOut}
                   className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
