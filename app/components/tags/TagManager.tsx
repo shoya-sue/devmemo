@@ -30,7 +30,7 @@ export default function TagManager() {
     if (!newTagName.trim()) return;
 
     try {
-      const tag = await createTag({ name: newTagName });
+      const tag = await createTag(newTagName);
       setTags([...tags, tag]);
       setNewTagName('');
     } catch (err: any) {

@@ -147,5 +147,5 @@ export async function getPostMedia(postId: string): Promise<Media[]> {
     .order('display_order');
 
   if (error) throw error;
-  return data?.map(item => item.media).filter(Boolean) || [];
+  return (data?.map(item => item.media).filter(Boolean) as unknown as Media[]) || [];
 }

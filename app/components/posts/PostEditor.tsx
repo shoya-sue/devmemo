@@ -16,6 +16,11 @@ const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
   loading: () => <div>エディタを読み込み中... / Loading editor...</div>,
 });
 
+const MarkdownPreview = dynamic(() => import('@uiw/react-markdown-preview'), {
+  ssr: false,
+  loading: () => <div>プレビュー読み込み中... / Loading preview...</div>,
+});
+
 interface PostEditorProps {
   post?: Post;
   isEdit?: boolean;
@@ -73,7 +78,7 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
         content,
         is_published: isPublished,
         user_id: user.id,
-        category_id: categoryId || null,
+        category_id: categoryId || undefined,
       };
 
       let savedPost;
@@ -206,7 +211,7 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
             />
           ) : (
             <div className="prose max-w-none">
-              <MDEditor.Markdown source={content} />
+              <MarkdownPreview source={content} />
             </div>
           )}
         </div>
@@ -220,7 +225,7 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
             />
           ) : (
             <div className="prose prose-invert max-w-none">
-              <MDEditor.Markdown source={content} />
+              <MarkdownPreview source={content} />
             </div>
           )}
         </div>

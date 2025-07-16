@@ -6,7 +6,7 @@ import { getCategories, createCategory, updateCategory, deleteCategory } from '@
 
 export default function CategoryManager() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [newCategory, setNewCategory] = useState({ name: '', description: '' });
+  const [newCategory, setNewCategory] = useState({ name: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +32,7 @@ export default function CategoryManager() {
     try {
       const category = await createCategory(newCategory);
       setCategories([...categories, category]);
-      setNewCategory({ name: '', description: '' });
+      setNewCategory({ name: '' });
     } catch (err: any) {
       setError(err.message);
     }
@@ -72,18 +72,6 @@ export default function CategoryManager() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-            説明 / Description
-          </label>
-          <textarea
-            id="description"
-            value={newCategory.description}
-            onChange={(e) => setNewCategory({ ...newCategory, description: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            rows={3}
-          />
-        </div>
         <button
           type="submit"
           className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -100,9 +88,6 @@ export default function CategoryManager() {
           >
             <div>
               <h3 className="font-semibold">{category.name}</h3>
-              {category.description && (
-                <p className="text-sm text-gray-500">{category.description}</p>
-              )}
             </div>
             <button
               onClick={() => handleDelete(category.id)}

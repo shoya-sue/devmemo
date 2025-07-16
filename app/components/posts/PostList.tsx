@@ -14,8 +14,8 @@ export default function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-  const [selectedTags, setSelectedTags] = useState<number[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
   const [loading, setLoading] = useState(true);
@@ -59,11 +59,11 @@ export default function PostList() {
     }
   };
 
-  const handleCategorySelect = (categoryId: number | null) => {
+  const handleCategorySelect = (categoryId: string | null) => {
     setSelectedCategory(categoryId);
   };
 
-  const handleTagToggle = (tagId: number) => {
+  const handleTagToggle = (tagId: string) => {
     setSelectedTags(prev => 
       prev.includes(tagId)
         ? prev.filter(id => id !== tagId)

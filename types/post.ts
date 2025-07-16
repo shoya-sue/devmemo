@@ -1,28 +1,29 @@
 export interface Post {
-  id: number;
+  id: string;
   title: string;
   content: string;
-  published: boolean;
-  created_at: Date;
-  updated_at: Date;
-  category_id?: number;
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  category_id?: string;
   category?: Category;
   tags?: Tag[];
 }
 
 export interface Category {
-  id: number;
+  id: string;
   name: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at?: string;
   posts?: Post[];
 }
 
 export interface Tag {
-  id: number;
+  id: string;
   name: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at?: string;
   posts?: Post[];
 }
 
@@ -32,8 +33,8 @@ export interface PostWithRelations extends Post {
 }
 
 export interface PostTag {
-  post_id: number;
-  tag_id: number;
+  post_id: string;
+  tag_id: string;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
 } 
