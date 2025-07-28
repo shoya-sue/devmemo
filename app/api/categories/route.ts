@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
+import { getCurrentUser, requireAdmin } from '@/lib/api/auth';
 
 export async function GET() {
   try {
@@ -18,6 +19,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const user = await getCurrentUser();
+    await requireAdmin(user?.id);
+    
     const supabase = createClient();
     const { name } = await request.json();
     const { data: category, error } = await supabase
@@ -35,6 +39,9 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    const user = await getCurrentUser();
+    await requireAdmin(user?.id);
+    
     const supabase = createClient();
     const { id } = await request.json();
     const { error } = await supabase
