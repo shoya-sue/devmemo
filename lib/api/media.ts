@@ -1,16 +1,5 @@
 import { createClient } from '@/utils/supabase/client';
-
-export interface Media {
-  id: string;
-  user_id: string;
-  file_path: string;
-  file_name: string;
-  mime_type: string;
-  size: number;
-  metadata?: any;
-  created_at: string;
-  updated_at: string;
-}
+import { Media } from '@/types/media';
 
 export async function uploadMedia(file: File): Promise<Media> {
   const supabase = createClient();

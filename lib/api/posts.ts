@@ -1,7 +1,8 @@
-import { supabase } from '../supabase';
+import { createClient } from '@/utils/supabase/client';
 import { Post } from '@/types/post';
 
 export const getPosts = async (userId: string) => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from('posts')
     .select(`
@@ -25,6 +26,7 @@ export const getPosts = async (userId: string) => {
 };
 
 export const getPost = async (id: string) => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from('posts')
     .select(`
@@ -48,6 +50,7 @@ export const getPost = async (id: string) => {
 };
 
 export const createPost = async (post: Omit<Post, 'id' | 'created_at' | 'updated_at'>) => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from('posts')
     .insert([post])
@@ -59,6 +62,7 @@ export const createPost = async (post: Omit<Post, 'id' | 'created_at' | 'updated
 };
 
 export const updatePost = async (id: string, post: Partial<Post>) => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from('posts')
     .update(post)
@@ -71,6 +75,7 @@ export const updatePost = async (id: string, post: Partial<Post>) => {
 };
 
 export const deletePost = async (id: string) => {
+  const supabase = createClient();
   const { error } = await supabase
     .from('posts')
     .delete()
