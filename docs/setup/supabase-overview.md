@@ -44,23 +44,6 @@ Supabaseは、オープンソースのFirebase代替サービスで、データ�
 - 信頼性の高いインフラ
 - グローバルな分散システム
 
-## セットアップ手順
-
-### 1. プロジェクト作成
-1. Supabaseのウェブサイトでアカウント作成
-2. 新しいプロジェクトを作成
-3. プロジェクトのURLとAPIキーを取得
-
-### 2. 環境変数の設定
-```env
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
-
-### 3. 必要なパッケージのインストール
-```bash
-npm install @supabase/supabase-js @supabase/ssr
-```
 
 ## セキュリティのベストプラクティス
 
