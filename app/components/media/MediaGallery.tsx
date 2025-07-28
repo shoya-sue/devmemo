@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Media, getUserMedia, deleteMedia } from '@/lib/api/media';
+import { getUserMedia, deleteMedia } from '@/lib/api/media';
+import { Media } from '@/types/media';
 import { useAuth } from '@/app/contexts/AuthContext';
 
 interface MediaGalleryProps {

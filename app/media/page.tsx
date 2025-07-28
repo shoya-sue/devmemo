@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '@/app/contexts/AuthContext';
-import { Media } from '@/lib/api/media';
+import { Media } from '@/types/media';
 import MediaUploader from '@/app/components/media/MediaUploader';
 import MediaGallery from '@/app/components/media/MediaGallery';
 

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { uploadMedia, Media } from '@/lib/api/media';
+import { uploadMedia } from '@/lib/api/media';
+import { Media } from '@/types/media';
 
 interface MediaUploaderProps {
   onUpload: (media: Media) => void;

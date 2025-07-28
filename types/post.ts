@@ -14,8 +14,8 @@ export interface Post {
 export interface Category {
   id: string;
   name: string;
+  description?: string;
   created_at: string;
-  updated_at?: string;
   posts?: Post[];
 }
 
@@ -23,7 +23,6 @@ export interface Tag {
   id: string;
   name: string;
   created_at: string;
-  updated_at?: string;
   posts?: Post[];
 }
 
@@ -36,5 +35,4 @@ export interface PostTag {
   post_id: string;
   tag_id: string;
   created_at: string;
-  updated_at?: string;
 } 

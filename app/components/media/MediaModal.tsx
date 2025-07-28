@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Media } from '@/lib/api/media';
+import { Media } from '@/types/media';
 import MediaUploader from './MediaUploader';
 import MediaGallery from './MediaGallery';
 

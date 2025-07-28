@@ -8,7 +8,8 @@ import { Post, Category, Tag } from '@/types/post';
 import { createPost, updatePost } from '@/lib/api/posts';
 import { getCategories } from '@/lib/api/categories';
 import { getTags } from '@/lib/api/tags';
-import { Media } from '@/lib/api/media';
+import { updatePostTags } from '@/lib/api/post-tags';
+import { Media } from '@/types/media';
 import MediaModal from '@/app/components/media/MediaModal';
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
@@ -88,7 +89,8 @@ export default function PostEditor({ post, isEdit = false }: PostEditorProps) {
         savedPost = await createPost(postData);
       }
 
-      // タグの関連付けは別途処理が必要
+      // タグの関連付け
+      await updatePostTags(savedPost.id, selectedTags);
 
       router.push(`/posts/${savedPost.id}`);
     } catch (err: any) {
