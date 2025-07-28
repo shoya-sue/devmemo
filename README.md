@@ -73,9 +73,11 @@ yarn dev
 create table posts (
   id uuid primary key default uuid_generate_v4(),
   user_id uuid references auth.users(id),
+  category_id uuid references categories(id),
   title text not null,
   content text,
   is_published boolean default false,
+  search_vector tsvector,
   created_at timestamp with time zone default timezone('utc'::text, now()),
   updated_at timestamp with time zone default timezone('utc'::text, now())
 );
@@ -86,6 +88,7 @@ create table posts (
 create table categories (
   id uuid primary key default uuid_generate_v4(),
   name text not null,
+  description text,
   created_at timestamp with time zone default timezone('utc'::text, now())
 );
 ```
@@ -105,6 +108,41 @@ create table post_tags (
   post_id uuid references posts(id) on delete cascade,
   tag_id uuid references tags(id) on delete cascade,
   primary key (post_id, tag_id)
+);
+```
+
+### Admin Users Table
+```sql
+create table admin_users (
+  user_id uuid primary key references auth.users(id),
+  created_at timestamp with time zone default timezone('utc'::text, now())
+);
+```
+
+### Media Table
+```sql
+create table media (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid references auth.users(id),
+  file_path text not null,
+  file_name text not null,
+  mime_type text not null,
+  size integer not null,
+  storage_bucket text not null default 'media',
+  metadata jsonb default '{}',
+  created_at timestamp with time zone default timezone('utc'::text, now()),
+  updated_at timestamp with time zone default timezone('utc'::text, now())
+);
+```
+
+### Post Media Table
+```sql
+create table post_media (
+  post_id uuid references posts(id) on delete cascade,
+  media_id uuid references media(id) on delete cascade,
+  display_order integer not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()),
+  primary key (post_id, media_id)
 );
 ```
 
